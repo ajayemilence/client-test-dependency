@@ -60,3 +60,9 @@ describe('Sorting for dependency ["a => b" , "b => c" , "c => a"]  with task  ["
         expect(SortingResult(["a", "b" ,"c" , "d"], ["a => b" , "b => c" , "c => a"])).toEqual("Error - this is a cyclic dependency");
     });
 });
+
+describe('Sorting for dependency ["a => b"]  with task  ["a", "b", "c", "d", "e", "f"] should return : \n result  = ["b", "a" , "d","c" , "e" ,"f"]', () => {
+    it('Sorted by dependency', () => {
+        expect(SortingResult(["a", "b", "c", "d", "e", "f"], ["a => b" , "c => d"])).toEqual(["b", "a" , "d","c" , "e" ,"f"]);
+    });
+});

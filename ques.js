@@ -1,5 +1,6 @@
 const SortingResult = (taskArray, dependencyArray) => {
     let result = [];
+    let cyclic = 0;
 
     // conditions for empty task and dependency
     if (taskArray.length <= 0 && dependencyArray.length <= 0) {
@@ -28,6 +29,7 @@ const SortingResult = (taskArray, dependencyArray) => {
                         // if the keys are repeating then cylic dependency check
                         if (dependArray.length > 0) {
                             result = [];
+                            cyclic = 1;
                             return result = "Error - this is a cyclic dependency";
                         }
                         // push the dependent which are not repeating
@@ -57,6 +59,16 @@ const SortingResult = (taskArray, dependencyArray) => {
                 }
             }
         })
+
+        // if task key has not assigned to any dependencies
+        if(cyclic == 0){
+            taskArray.map((task) => {
+                if (!result.includes(task)) {
+                    result.push(task)
+                }
+            });
+        }
+        
         
         return result;
     }
