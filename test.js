@@ -61,8 +61,14 @@ describe('Sorting for dependency ["a => b" , "b => c" , "c => a"]  with task  ["
     });
 });
 
-describe('Sorting for dependency ["a => b"]  with task  ["a", "b", "c", "d", "e", "f"] should return : \n result  = ["b", "a" , "d","c" , "e" ,"f"]', () => {
+describe('Sorting for dependency ["a => b" , "c => d"]  with task  ["a", "b", "c", "d", "e", "f"] should return : \n result  = ["b", "a" , "d","c" , "e" ,"f"]', () => {
     it('Sorted by dependency', () => {
         expect(SortingResult(["a", "b", "c", "d", "e", "f"], ["a => b" , "c => d"])).toEqual(["b", "a" , "d","c" , "e" ,"f"]);
     });
 });
+
+describe('Sorting for dependency ["a => b" , "a => c" , "b => d" , "c => d" , "e => f"]  with task  ["a", "b" ,"c" , "d","e","f"] should return : \n result  = ["d","b", "c", "a" ,"f","e"]', () => {
+    it('Sorted by dependency', () => {
+        expect(SortingResult([ "a","b","c","d" ,"e","f"], ["a => b" , "a => c" , "b => d" , "c => d" , "e => f"])).toEqual(["d","b", "c", "a" ,"f","e"],);
+    });
+  });

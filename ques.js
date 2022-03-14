@@ -44,6 +44,21 @@ const SortingResult = (taskArray, dependencyArray) => {
             if (!check) {
                 // multiple dependinces for same variable
                 let dependArraySecond = matchArrKey.filter(x => x.value === task);
+                let dependArraythird = []
+                dependArraythird = matchArrKey.filter(obj => obj.value === taskArray[taskArray.length - 1]);
+                if (dependArraythird.length !== 0) {
+                    missArraythird = matchArrKey.filter(obj => {
+                        if (result[result.length - 1] === obj.key) {
+                            if (!result.includes(obj.value)) {
+                                // result.push(obj.value);
+                                result.splice( result.length - 1, 0, obj.value )
+                            }
+                        }
+                        obj.value === result[result.length - 1]
+                    });
+                    console.log(missArraythird, missArraythird)
+                }
+
                 if (dependArraySecond.length > 0) {
                     result.push(dependArraySecond[0].value);
                     let key = dependArraySecond[0].key;
